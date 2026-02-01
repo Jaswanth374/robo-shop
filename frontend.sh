@@ -26,14 +26,6 @@ VALIDATE(){
     fi
 }
 
-if [ -f $NGINX ]; then
-  echo -e "$Y Existing nginx config found. Removing... $N" | tee -a $LOGS_FILE
-  rm -rf "$NGINX" &>>$LOGS_FILE
-  VALIDATE $? "Remove existing nginx config"
-  else
-  echo "No existing files. Move to next step"
-fi
-
 dnf module list nginx &>>$LOGS_FILE
 VALIDATE $? "NodeJs module list" 
 
