@@ -41,14 +41,14 @@ VALIDATE $? "Enable & Start Nginx"
 rm -rf /usr/share/nginx/html/* 
 VALIDATE $? "Remove HTML default page"
 
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip &>>$LOGS_FILE
 VALIDATE $? "Download frontend content"
 
-cd /usr/share/nginx/html 
-unzip /tmp/frontend.zip
+cd /usr/share/nginx/html  &>>$LOGS_FILE
+unzip /tmp/frontend.zip &>>$LOGS_FILE
 VALIDATE $? "Extract the files from tmp to default page"
 
-cp nginx.conf /etc/nginx/nginx.conf
+cp /home/ec2-user/robo-shop/nginx.conf /etc/nginx/nginx.conf &>>$LOGS_FILE
 VALIDATE $? "Copying the nginx.conf"
 
 systemctl restart nginx &>>$LOGS_FILE
