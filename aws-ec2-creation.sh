@@ -14,10 +14,10 @@ do
     --image-id $AMI_ID \
     --instance-type $INST_TYPE \
     --security-group-ids $SG_ID \
-    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]' \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
     --query 'Instances[0].InstanceId' \
     --output text)
-if [ $INSTANCE -eq frontned ]; then
+if [ $INSTANCE -eq "frontned" ]; then
              IP=$(aws ec2 describe-instances \
                      --instance-ids $INSTANCE \
                      --query 'Reservations[].Instances[].PublicIpAddress' \
@@ -40,7 +40,7 @@ aws route53 change-resource-record-sets \
     {
       "Action": "UPSERT",
       "ResourceRecordSet": {
-        "Name": "'$INSTANCE'",
+        "Name": "'$RECORD_NM'",
         "Type": "A",
         "TTL": 1,
         "ResourceRecords": [
