@@ -46,8 +46,8 @@ fi
 mkdir -p /app &>>$LOGS_FILE
 VALIDATE $? "Creating app directory"
 
-curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip  &>>$LOGS_FILE
-VALIDATE $? "Downloading cart code"
+curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip  &>>$LOGS_FILE
+VALIDATE $? "Downloading user code"
 
 cd /app &>>$LOGS_FILE
 VALIDATE $? "Moving to app directory"
